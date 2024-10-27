@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*Estilos del login en tailwind que se pueden reciclar*/
+
+.inputs-login {
+  @apply w-full p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-600 focus:animate-shake animate-once animate-duration-[3000ms] animate-delay-[2000ms];
+}
+
+.form-login {
+  @apply bg-secondary bg-opacity-80 p-8 rounded-lg shadow-md w-full max-w-md animate-jump animate-once animate-duration-[3000ms] animate-delay-[2000ms];
+}
+
+.button-login {
+  @apply w-full p-3 bg-green-600 text-white rounded-xl shadow-xl hover:shadow-green-300 duration-3000 hover:bg-green-800 font-bold;
+}
+
+.text-login-left {
+  @apply animate-fade-right animate-once animate-ease-linear;
+}
+
+
+
+/* Estilos del resgiter en tailwind que se pueden reciclar*/
+
+
+.form-container {
+  @apply bg-secondary bg-opacity-80 shadow-lg rounded-lg p-8 w-full md:w-1/2 mr-5 animate-fade-right animate-once animate-duration-[2000ms] animate-delay-[2000ms] animate-ease-linear;
+}
+
+.title {
+  @apply text-3xl font-bold text-center text-green-600 mb-4;
+}
+
+.input-container {
+  @apply flex items-center border-b border-green-300 pb-2;
+}
+
+.inputs-register {
+  @apply placeholder-gray-700 bg-transparent outline-none flex-1;
+}
+
+.error-messages {
+  @apply bg-green-100 text-red-600 font-bold rounded-lg p-2;
+}
+
+.register-button {
+  @apply py-3 bg-green-600 text-white rounded-xl shadow-xl hover:shadow-green-300 duration-3000 hover:bg-green-800 font-bold;
+}
+
+.link {
+  @apply text-center text-green-800 mt-4;
+}
+
+.why-register-container {
+  @apply bg-secondary bg-opacity-80 shadow-lg rounded-lg p-8 w-full md:w-1/2 flex items-center justify-center animate-fade-left animate-once animate-duration-[2000ms] animate-delay-[2000ms] animate-ease-linear;
+}
+
+.why-title {
+  @apply text-2xl font-bold text-green-600 mb-2;
+}
+
+.why-text {
+  @apply text-gray-800 mb-4;
+}
+
+
+/*Estilos del hpme en tailwind que se pueden reciclar*/
+
+.animated-down{
+  @apply animate-fade-down animate-duration-[4000ms] animate-delay-[4000ms]
+
+}
+
+.buttons-profile{
+  @apply bg-white text-green-500 px-6 py-3 rounded-2xl border border-green-500 transition  mx-6 flex items-center cell:text-sm  md:text-lg lg:text-xl hover:bg-green-600 hover:text-white duration-2000 shadow-xl hover:shadow-green-400 animate-flip-down animate-duration-[2000ms] animate-delay-[2000ms]
+}
+
+.animated-opciones{
+  @apply animate-fade-down animate-once animate-duration-[2000ms] animate-delay-[2000ms]
+}
