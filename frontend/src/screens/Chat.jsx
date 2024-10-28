@@ -20,7 +20,7 @@ const Chat = () => {
     } else if (lowerCaseMessage.includes("pago") || lowerCaseMessage.includes("pagar")) {
       return "Voy a pagar por bancolombia";
     } else {
-      return "Entendido aquí estaré esperándote";
+      return "Entendido aqui estare esperandote";
     }
   };
 

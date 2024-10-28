@@ -1,6 +1,14 @@
 import { User, MessageCircle } from 'lucide-react'
+import { useNavigate } from "react-router-dom";
 
 const ProfileHeader = () => {
+
+  const redirect = useNavigate();
+
+  const handleNavigate = (path) => {
+    redirect(path);
+  };
+
   return (
     <div className="bg-green-700 shadow-lg rounded-lg p-4 flex items-center justify-between mb-8 max-w-[95%] mx-auto animate-fade-down animate-duration-[1000ms] animate-delay-[1000ms]">
       {/* Lado izquierdo de la seccion imagen de perfil y informacion del usuario */}
@@ -16,8 +24,8 @@ const ProfileHeader = () => {
 
       {/* Lado derecho icono de mensajes */}
       <a
-        href="/chat"
-        className="text-green-600 hover:text-green-800 transition duration-300 ease-in-out flex items-center space-x-2 bg-green-100 p-3 rounded-full shadow-md hover:shadow-lg"
+        onClick={()=>handleNavigate("/chat")}
+        className="text-green-600 hover:text-green-800 transition duration-300 ease-in-out flex items-center space-x-2 bg-green-100 p-3 rounded-full shadow-md hover:shadow-lg cursor-pointer"
       >
         <MessageCircle className="w-8 h-8" />
       </a>
