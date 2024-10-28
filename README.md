@@ -10,6 +10,9 @@ Este proyecto es una plataforma de e-commerce que permite a los usuarios crear u
 
 ## Configuración Inicial
 
+- **Frontend**: npm install
+- **Backend**: npm install
+
 - **Frontend**: npm run dev
 - **Backend**: npm run dev ( Creacion de las tablas de la base de datos automaticamente al levantar el servidor)
 - **Backend**: npm run db ( Para visualizar los datos que contienen las tablas de la base de datos desde la terminal)
