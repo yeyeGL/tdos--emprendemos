@@ -19,7 +19,7 @@ const Profile = () => {
       const response = await axios.get("http://localhost:3000/api/products");
       setProducts(response.data);
     } catch (error) {
-      console.error("Error fetching products:", error);
+      console.error("Error de fetching de productos:", error);
     }
   };
 
@@ -42,7 +42,7 @@ const Profile = () => {
       const updatedProducts = products.filter((product) => product.id !== id);
       setProducts(updatedProducts);
     } catch (error) {
-      console.error("Error deleting product:", error);
+      console.error("Error eliminando producto:", error);
     }
   };
 
@@ -55,7 +55,7 @@ const Profile = () => {
       setProducts(updatedProducts);
       setEditingProduct(null);
     } catch (error) {
-      console.error("Error updating product:", error);
+      console.error("Error actualizando producto:", error);
     }
   };
 

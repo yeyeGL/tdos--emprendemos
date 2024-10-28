@@ -31,7 +31,8 @@ const createProductsTable = `
     price NUMERIC(10, 2) NOT NULL,
     category VARCHAR(50) NOT NULL,
     image_url VARCHAR(255),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    user_id INTEGER REFERENCES users(id) ON DELETE CASCADE
   );
 `;
 

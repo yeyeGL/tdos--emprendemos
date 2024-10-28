@@ -64,11 +64,11 @@ export const login = async (req, res) => {
  
 
 export const createProducts = async (req, res) => {
-  const { title, description, price, category } = req.body;
+  const { title, description, price, category,user_id } = req.body;
   const image_url = req.file ? req.file.path : null; 
-
+  
   try {
-    const product = await UserModel.createProduct(title, description, price, category, image_url);
+    const product = await UserModel.createProduct(title, description, price, category, image_url,user_id);
     return res.status(201).json(product);
   } catch (error) {
     return res.status(500).json({ message: error.message });

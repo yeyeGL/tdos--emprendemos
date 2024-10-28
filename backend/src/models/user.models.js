@@ -25,13 +25,14 @@ const findByEmail = async (email) => {
   }
 };
 
-const createProduct = async (title, description, price, category, image_url) => {
+const createProduct = async (title, description, price, category, image_url,user_id) => {
+
   try {
     const result = await pool.query(`
-        INSERT INTO products (title, description, price, category, image_url)
-        VALUES ($1, $2, $3, $4, $5)
+        INSERT INTO products (title, description, price, category, image_url, user_id)
+        VALUES ($1, $2, $3, $4, $5, $6)
         RETURNING *
-    `, [title, description, price, category, image_url]); 
+    `, [title, description, price, category, image_url, user_id]); 
 
     return result.rows[0]; 
   } catch (error) {
@@ -39,6 +40,7 @@ const createProduct = async (title, description, price, category, image_url) => 
     throw new Error("Error al crear el producto");
   }
 };
+
 
 const editProduct = async (id, title, description, price, category, image_url) => {
   try {
