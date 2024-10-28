@@ -1,110 +1,88 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import CreateProductForm from "../components/profile/CreateProductForm";
 import EditProductForm from "../components/profile/EditProductForm";
-import FilterProductForm from "../components/profile/FilterProductForm";
 import ProductCard from "../components/profile/ProductCard";
 import ProfileHeader from "../components/profile/ProfileHeader";
+import axios from "axios";
 
 const Profile = () => {
   const [products, setProducts] = useState([]);
-  const [filteredProducts, setFilteredProducts] = useState([]);
-  const [filter, setFilter] = useState({ category: "", price: "" });
   const [editingProduct, setEditingProduct] = useState(null);
 
-  const handleCreateProduct = (e) => {
-    e.preventDefault();
-    const newProduct = {
-      id: Date.now(),
-      title: e.target.title.value,
-      description: e.target.description.value,
-      price: parseFloat(e.target.price.value),
-      category: e.target.category.value,
-      image: URL.createObjectURL(e.target.image.files[0]),
-    };
-    setProducts([...products, newProduct]);
-    setFilteredProducts([...products, newProduct]);
+ 
+  const fetchProducts = async () => {
+    try {
+      const response = await axios.get("http://localhost:3000/api/products");
+      setProducts(response.data);
+    } catch (error) {
+      console.error("Error fetching products:", error);
+    }
   };
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
+ 
+  const handleCreateProduct = (newProduct) => {
+    setProducts((prev) => [...prev, newProduct]);
+  };
+
 
   const handleEdit = (product) => {
     setEditingProduct(product);
   };
 
-  const handleDelete = (id) => {
-    const updatedProducts = products.filter((product) => product.id !== id);
-    setProducts(updatedProducts);
-    setFilteredProducts(
-      updatedProducts.filter(
-        (product) =>
-          (filter.category ? product.category === filter.category : true) &&
-          (filter.price ? product.price <= filter.price : true)
-      )
-    );
+  
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(`http://localhost:3000/api/products/${id}`);
+      const updatedProducts = products.filter((product) => product.id !== id);
+      setProducts(updatedProducts);
+    } catch (error) {
+      console.error("Error deleting product:", error);
+    }
   };
 
-  const handleUpdate = (e) => {
-    e.preventDefault();
-    const updatedProduct = {
-      ...editingProduct,
-      title: e.target.title.value,
-      description: e.target.description.value,
-      price: parseFloat(e.target.price.value),
-      category: e.target.category.value,
-    };
-    const updatedProducts = products.map((product) =>
-      product.id === editingProduct.id ? updatedProduct : product
-    );
-    setProducts(updatedProducts);
-    setFilteredProducts(updatedProducts);
-    setEditingProduct(null);
-  };
-
-  const handleFilter = (e) => {
-    e.preventDefault();
-    const filtered = products.filter(
-      (product) =>
-        (filter.category ? product.category === filter.category : true) &&
-        (filter.price ? product.price <= filter.price : true)
-    );
-    setFilteredProducts(filtered);
+  const handleUpdate = async (updatedProduct) => {
+    try {
+      await axios.put(`http://localhost:3000/api/products/${updatedProduct.id}`, updatedProduct);
+      const updatedProducts = products.map((product) =>
+        product.id === updatedProduct.id ? updatedProduct : product
+      );
+      setProducts(updatedProducts);
+      setEditingProduct(null);
+    } catch (error) {
+      console.error("Error updating product:", error);
+    }
   };
 
   return (
     <div className="min-h-screen bg-green-50 p-8">
       <ProfileHeader />
-      <div className="flex justify-start">
-        <div className="mb-4">
-          <CreateProductForm handleCreateProduct={handleCreateProduct} />
-        </div>
-
-        <div className="mb-4">
-          {editingProduct ? (
-            <EditProductForm
-              editingProduct={editingProduct}
-              handleUpdate={handleUpdate}
-            />
-          ) : (
-            <FilterProductForm
-              handleFilter={handleFilter}
-              filter={filter}
-              setFilter={setFilter}
-            />
-          )}
-        </div>
+      <div className="flex justify-start mb-4">
+        <CreateProductForm handleCreateProduct={handleCreateProduct} />
+      </div>
+      <div className="mb-4">
+        {editingProduct ? (
+          <EditProductForm
+            editingProduct={editingProduct}
+            handleUpdate={handleUpdate}
+            setEditingProduct={setEditingProduct}
+          />
+        ) : null} 
       </div>
 
-      <h2 className="text-4xl font-semibold  mb-4 animate-fade-down animate-duration-[3000ms] animate-delay-[3000ms]">Productos</h2>
+      <h2 className="text-4xl font-semibold mb-4 animate-flip-down animate-duration-[3000ms] animate-delay-[3000ms]">Productos</h2>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {(filteredProducts.length > 0 ? filteredProducts : products).map(
-          (product) => (
-            <ProductCard
-              key={product.id}
-              product={product}
-              handleEdit={handleEdit}
-              handleDelete={handleDelete}
-              className="transition-transform duration-300 transform hover:scale-105"
-            />
-          )
-        )}
+        {products.map((product) => (
+          <ProductCard
+            key={product.id}
+            product={product}
+            handleEdit={handleEdit}
+            handleDelete={handleDelete}
+          />
+        ))}
       </div>
     </div>
   );

@@ -94,6 +94,19 @@ const createChat = async (text, sender, user_id) => {
   }
 };
 
+const findByCategory = async (category) => {
+  try {
+    const result = await pool.query(`SELECT * FROM products WHERE category = $1`, [
+      category,
+    ]);
+    return result.rows; 
+  } catch (error) {
+    console.error("Error al buscar productos por categoría:", error);
+    throw new Error("Error al buscar productos por categoría");
+  }
+};
+
+
 
 
 export const UserModel = {
@@ -102,5 +115,6 @@ export const UserModel = {
   createProduct,
   editProduct,
   deleteProduct,
-  createChat
+  createChat,
+  findByCategory
 };

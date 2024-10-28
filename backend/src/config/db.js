@@ -41,8 +41,8 @@ const createChatTable = `
     id SERIAL PRIMARY KEY,
     text VARCHAR(255) NOT NULL,
     sender VARCHAR(50) NOT NULL, 
-    user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    user_id INTEGER REFERENCES users(id) ON DELETE CASCADE
   );
 `;
 

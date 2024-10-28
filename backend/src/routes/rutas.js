@@ -6,16 +6,17 @@ import {
   createProducts,
   editProduct,
   deleteProduct,
-  chat
+  chat,
+  getProductsByCategory
 } from "../controllers/user.controllers.js";
 
 // Configuración de multer
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, 'uploads/'); 
+    cb(null, 'uploads/');
   },
   filename: (req, file, cb) => {
-    cb(null, Date.now() + '-' + file.originalname); 
+    cb(null, Date.now() + '-' + file.originalname);
   },
 });
 
@@ -28,28 +29,8 @@ router.post("/login", login);
 router.post("/products", upload.single('image'), createProducts); 
 router.put("/products/:id", upload.single('image'), editProduct); 
 router.delete("/products/:id", deleteProduct);
+router.get("/products/category/:category", getProductsByCategory);
 router.post("/chat", chat);
 
-// Para hacer pruebas de products
-// {
-//     "title": "Titulo 1",
-//     "description": "Descripcion 1",
-//     "price": 10000,
-//     "category": "Producto",
-//     "image_url": "https://imagen/imagen.jpg"
-// }
-
-// Para hacer pruebas de register
-// {
-//     "name": "Nombre 1",
-//     "email": "correo1@gmail.com",
-//     "password": "123456"
-// }
-
-// Para hacer pruebas de login
-// {
-//     "email": "correo1@gmail.com",
-//     "password": "123456"
-// }
 
 export default router;

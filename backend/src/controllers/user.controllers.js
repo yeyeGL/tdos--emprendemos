@@ -63,8 +63,6 @@ export const login = async (req, res) => {
 };
  
 
-
-
 export const createProducts = async (req, res) => {
   const { title, description, price, category } = req.body;
   const image_url = req.file ? req.file.path : null; 
@@ -114,5 +112,19 @@ export const chat = async (req, res) => {
   } catch (error) {
     console.error("Error al crear el chat:", error);
     return res.status(500).json({ message: "Error al crear el chat" });
+  }
+};
+
+export const getProductsByCategory = async (req, res) => {
+  const { category } = req.params; 
+  try {
+    const products = await UserModel.findByCategory(category);
+    if (products.length === 0) {
+      return res.status(404).json({ message: "No products found for this category." });
+    }
+    res.status(200).json(products);
+  } catch (error) {
+    console.error("Error fetching products by category:", error);
+    res.status(500).json({ message: "Error fetching products by category." });
   }
 };
