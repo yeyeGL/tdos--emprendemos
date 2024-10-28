@@ -1,8 +1,7 @@
 /* eslint-disable react/prop-types */
-import { Edit, Trash } from 'lucide-react';
+import { Edit, Trash, PlusCircle } from 'lucide-react';
 
-const ProductCard = ({ product, handleEdit, handleDelete }) => {
- 
+const ProductCard = ({ product, handleEdit, handleDelete, handlePublish }) => {
   const imageUrl = `http://localhost:3000/${product.image_url.replace(/\\/g, '/')}`;
 
   return (
@@ -30,6 +29,12 @@ const ProductCard = ({ product, handleEdit, handleDelete }) => {
           className="bg-red-500 text-white px-3 py-1 rounded flex items-center"
         >
           <Trash className="w-4 h-4 mr-1" /> Eliminar
+        </button>
+        <button
+          onClick={() => handlePublish(product)}
+          className="bg-blue-500 text-white px-3 py-1 rounded flex items-center"
+        >
+          <PlusCircle className="w-4 h-4 mr-1" /> Publicar
         </button>
       </div>
     </div>

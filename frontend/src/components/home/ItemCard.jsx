@@ -8,7 +8,7 @@ const ItemCard = ({ item }) => {
 
   return (
     <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 animated-down">
-      <img src={item.image} alt={item.name} className="w-full h-48 object-cover" />
+      <img src={item.image } alt={item.name} className="w-full h-48 object-cover" />
       <div className="p-4">
         <span className="inline-block px-2 py-1 text-xs font-semibold text-green-800 bg-green-100 rounded-full mb-2">
           {item.category}

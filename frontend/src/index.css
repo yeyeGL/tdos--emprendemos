@@ -69,7 +69,7 @@
 /*Estilos del hpme en tailwind que se pueden reciclar*/
 
 .animated-down{
-  @apply animate-fade-down animate-duration-[4000ms] animate-delay-[4000ms]
+  @apply animate-fade-down animate-duration-[2000ms] animate-delay-[2000ms]
 
 }
 

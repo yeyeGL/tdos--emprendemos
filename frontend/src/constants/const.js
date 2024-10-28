@@ -48,7 +48,7 @@ export const Products_Mockeados = [
     category: "Servicio",
     name: "Clases de matematicas",
     description:
-      "Clases de matematicas personalizadas primaria secundaria y universidad",
+      "Clases de matematicas personalizadas ",
     price: "$200000",
     rating: 5,
     comments: 210,
