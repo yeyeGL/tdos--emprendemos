@@ -101,8 +101,8 @@ const findByCategory = async (category) => {
     ]);
     return result.rows; 
   } catch (error) {
-    console.error("Error al buscar productos por categoría:", error);
-    throw new Error("Error al buscar productos por categoría");
+    console.error("Error al buscar productos por categoria:", error);
+    throw new Error("Error al buscar productos por categoria");
   }
 };
 

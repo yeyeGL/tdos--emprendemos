@@ -10,7 +10,6 @@ import {
   getProductsByCategory
 } from "../controllers/user.controllers.js";
 
-// Configuración de multer
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, 'uploads/');
@@ -24,8 +23,8 @@ const upload = multer({ storage });
 
 const router = Router();
 
-router.post("/register", register);
 router.post("/login", login);
+router.post("/register", register);
 router.post("/products", upload.single('image'), createProducts); 
 router.put("/products/:id", upload.single('image'), editProduct); 
 router.delete("/products/:id", deleteProduct);
