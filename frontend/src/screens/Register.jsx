@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { FaRegUserCircle } from "react-icons/fa";
+import Swal from "sweetalert2";
 import {
   MdVisibility,
   MdVisibilityOff,
@@ -26,6 +27,13 @@ const Register = () => {
       const res = await axios.post("http://localhost:3000/api/register", data);
       console.log(res.data);
       reset();
+      Swal.fire({
+        title: 'Operación exitosa!',
+        text: 'Creación de cuenta con éxito',
+        icon: 'success',
+        confirmButtonText: 'OK',
+        confirmButtonColor: '#28a745'
+      })
       redirect("/");
     } catch (error) {
       console.log("Error", error);
@@ -129,14 +137,12 @@ const Register = () => {
           <div>
             <h2 className="why-title">¿Por que registrarse?</h2>
             <p className="why-text">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem
-              voluptas ipsa quas, a perspiciatis dolores, ipsum, explicabo
-              placeat enim quasi hic tempora doloribus saepe minus commodi!
-              Tempora impedit commodi qui.
-            </p>
-            <p className="why-text">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident
-              numquam facilis in. Cupiditate a expedita aliquid quo quod
+            El registro en la plataforma es un paso esencial para garantizar 
+            que tanto los vendedores como los compradores sean miembros verificados 
+            de la comunidad universitaria. Al requerir un proceso de registro, 
+            podemos asegurar que todos los emprendedores que suben sus productos 
+            y los consumidores que adquieren bienes o servicios forman parte de 
+            la misma institución educativa.
             </p>
           </div>
         </div>

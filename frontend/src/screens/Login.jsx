@@ -5,6 +5,7 @@ import { MdVisibility, MdVisibilityOff } from "react-icons/md";
 import { useState } from "react";
 import Swal from "sweetalert2";
 
+
 const Login = () => {
   const redirect = useNavigate();
 
@@ -45,22 +46,28 @@ const Login = () => {
   const errorMessages = Object.values(errors).map((error) => error.message);
 
   return (
+    
     <section className="flex h-screen"  style={{ backgroundImage: `url(/img/fondov4.png)` }} >
       {/* Lado izquierdo */}
       <div className="hidden md:flex flex-1 rounded-lg bg-gradient-to-tl from-secondary via-green-400 to-green-800 from-30% via-50% to-90% items-center justify-center p-10 animate-jump animate-once animate-duration-[3000ms] animate-delay-[2000ms]">
         <div className="text-center">
-          <h1 className="text-4xl font-extrabold mb-4 text-white text-login-left animate-duration-[4000ms] animate-delay-[4000ms] ">
-           Bienvenidos a la pagina oficial de TdoS Emprendemos
+        <img src="../../public/img/fondov2.png" alt="Logo" style={{ width: '700px', height: 'auto' }} />
+        <br />
+        <br />
+        <br />
+        <br />
+          <h1 className="text-4xl font-extrabold mb-4 text-white text-login-left animate-duration-[2000ms] animate-delay-[2000ms] ">
+           Bienvenidos a la página oficial de TdoS Emprendemos
           </h1>
-          <p className="text-xl mb-4 text-green-900 font-semibold text-login-left animate-duration-[5000ms] animate-delay-[5000ms] ">
-            Aca fomentamos los emprendimientos de los estudiantes
+          <p className="text-xl mb-4 text-green-900 font-semibold text-login-left animate-duration-[2000ms] animate-delay-[2000ms] ">
+            Olvidate de las limitaciones para vender tus productos y estudia tranquilo 👌
           </p>
-          <p className="text-lg text-green-800 font-bold text-login-left animate-duration-[6000ms] animate-delay-[6000ms] ">
+          <p className="text-lg text-green-800 font-bold text-login-left animate-duration-[2000ms] animate-delay-[2000ms] ">
             Ingresa y mira los productos de los estudiantes o publica tus productos
           </p>
         </div>
       </div>
-
+    
       {/* Lado derecho con la imagen de fondo y el formulario centrado */}
       <div
         className="flex flex-1 items-center justify-center bg-cover bg-left-center relative"
@@ -74,7 +81,7 @@ const Login = () => {
             <p>TDOS-EMPRENDEMOS</p>
           </h1>
           <form onSubmit={onSubmit} className="form-login">
-            <h2 className="text-3xl font-extrabold mb-6 text-center text-green-700">Iniciar Sesion</h2>
+            <h2 className="text-3xl font-extrabold mb-6 text-center text-green-700">Iniciar Sesión</h2>
 
             <div className="mb-4 relative">
               <input
