@@ -27,10 +27,6 @@ const EditProductForm = ({ editingProduct, handleUpdate, setEditingProduct }) =>
     formData.append("category", updatedProduct.category);
 
 
-    if (data.image.length > 0) {
-      formData.append("image", data.image[0]);
-    }
-
     try {
       const response = await axios.put(`http://localhost:3000/api/products/${editingProduct.id}`, formData, {
         headers: {
@@ -87,16 +83,7 @@ const EditProductForm = ({ editingProduct, handleUpdate, setEditingProduct }) =>
                 <option value="Servicio">Servicio</option>
               </select>
             </div>
-            <div className="mb-4">
-              <label htmlFor="image" className="block text-green-700">Imagen del Producto</label>
-              <input
-                id="image"
-                type="file"
-                accept="image/*"
-                className="border border-green-400 p-2 w-full rounded"
-                {...register("image")}
-              />
-            </div>
+           
             <button
               type="submit"
               className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition duration-300"

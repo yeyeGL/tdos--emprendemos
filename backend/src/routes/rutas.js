@@ -7,7 +7,8 @@ import {
   editProduct,
   deleteProduct,
   chat,
-  getProductsByCategory
+  getProductsByCategory,
+  getProducts
 } from "../controllers/user.controllers.js";
 
 const storage = multer.diskStorage({
@@ -30,6 +31,8 @@ router.put("/products/:id", upload.single('image'), editProduct);
 router.delete("/products/:id", deleteProduct);
 router.get("/products/category/:category", getProductsByCategory);
 router.post("/chat", chat);
+router.get("/allproducts",getProducts );
+
 
 
 export default router;

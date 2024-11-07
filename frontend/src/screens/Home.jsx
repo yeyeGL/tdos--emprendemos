@@ -2,7 +2,8 @@ import { useState } from 'react';
 import NavBar from '../components/NavBar.jsx';
 import SearchBar from '../components/home/SearchBar';
 import ItemCard from '../components/home/ItemCard';
-import {Products_Mockeados} from "../constants/const";
+import { Products_Mockeados } from "../constants/const";
+
 
 const Home = () => {
   const [searchTerm, setSearchTerm] = useState('');

@@ -8,15 +8,13 @@ import { Products_Mockeados } from "../constants/const";
 import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
-
   const redirect = useNavigate();
-  
   const [products, setProducts] = useState([]);
   const [editingProduct, setEditingProduct] = useState(null);
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/api/products");
+      const response = await axios.get("http://localhost:3000/api/allproducts");
       setProducts(response.data);
     } catch (error) {
       console.error("Error de fetching de productos:", error);
@@ -34,7 +32,6 @@ const Profile = () => {
   const handleEdit = (product) => {
     setEditingProduct(product);
   };
-
 
   const handleDelete = async (id) => {
     try {
@@ -60,7 +57,6 @@ const Profile = () => {
   };
 
   const handlePublish = (product) => {
-
     const imageUrl = `http://localhost:3000/${product.image_url.replace(/\\/g, '/')}`;
   
     const newProduct = {
@@ -76,7 +72,7 @@ const Profile = () => {
     };
     
     Products_Mockeados.push(newProduct);
-    redirect("/home")
+    redirect("/home");
   };
 
   return (
@@ -96,14 +92,14 @@ const Profile = () => {
       </div>
 
       <h2 className="text-4xl font-semibold mb-4 animate-flip-down animate-duration-[3000ms] animate-delay-[3000ms]">Productos</h2>
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 animate-flip-down animate-duration-[3000ms] animate-delay-[3000ms]">
         {products.map((product) => (
           <ProductCard
             key={product.id}
             product={product}
             handleEdit={handleEdit}
             handleDelete={handleDelete}
-            handlePublish={handlePublish} 
+            handlePublish={handlePublish}
           />
         ))}
       </div>

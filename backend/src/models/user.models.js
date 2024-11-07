@@ -25,14 +25,14 @@ const findByEmail = async (email) => {
   }
 };
 
-const createProduct = async (title, description, price, category, image_url,user_id) => {
+const createProduct = async (title, description, price, category, image_url) => {
 
   try {
     const result = await pool.query(`
-        INSERT INTO products (title, description, price, category, image_url, user_id)
-        VALUES ($1, $2, $3, $4, $5, $6)
+        INSERT INTO products (title, description, price, category, image_url)
+        VALUES ($1, $2, $3, $4, $5)
         RETURNING *
-    `, [title, description, price, category, image_url, user_id]); 
+    `, [title, description, price, category, image_url]); 
 
     return result.rows[0]; 
   } catch (error) {
@@ -41,15 +41,14 @@ const createProduct = async (title, description, price, category, image_url,user
   }
 };
 
-
-const editProduct = async (id, title, description, price, category, image_url) => {
+const editProduct = async (id, title, description, price, category) => {
   try {
     const result = await pool.query(`
         UPDATE products
-        SET title = $1, description = $2, price = $3, category = $4, image_url = $5
-        WHERE id = $6
+        SET title = $1, description = $2, price = $3, category = $4
+        WHERE id = $5
         RETURNING *
-    `, [title, description, price, category, image_url, id]);
+    `, [title, description, price, category, id]);
 
     if (result.rows.length === 0) {
       throw new Error("Producto no encontrado");
@@ -81,6 +80,16 @@ const deleteProduct = async (id) => {
   }
 };
 
+const getAllProducts = async () => {
+  try {
+    const result = await pool.query(`SELECT * FROM products`);
+    return result.rows;
+  } catch (error) {
+    console.error("Error al obtener productos:", error);
+    throw new Error("Error al obtener productos");
+  }
+};
+
 const createChat = async (text, sender, user_id) => {
   try {
     const result = await pool.query(`
@@ -108,6 +117,19 @@ const findByCategory = async (category) => {
   }
 };
 
+const findOneByEmail = async (email) => {
+  const query = {
+    text: `
+    SELECT * FROM users
+    WHERE email = $1;`,
+    values: [email],
+  };
+
+  const { rows } = await db.query(query);
+  return rows[0];
+}
+
+
 
 
 
@@ -118,5 +140,7 @@ export const UserModel = {
   editProduct,
   deleteProduct,
   createChat,
-  findByCategory
+  findByCategory,
+  getAllProducts,
+  findOneByEmail
 };

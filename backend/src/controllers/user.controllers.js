@@ -62,7 +62,6 @@ export const login = async (req, res) => {
   }
 };
  
-
 export const createProducts = async (req, res) => {
   const { title, description, price, category,user_id } = req.body;
   const image_url = req.file ? req.file.path : null; 
@@ -78,10 +77,9 @@ export const createProducts = async (req, res) => {
 export const editProduct = async (req, res) => {
   const { id } = req.params;
   const { title, description, price, category } = req.body;
-  const image_url = req.file ? req.file.path : null; // Obtiene la ruta de la nueva imagen
 
   try {
-    const product = await UserModel.editProduct(id, title, description, price, category, image_url);
+    const product = await UserModel.editProduct(id, title, description, price, category);
     return res.status(200).json(product);
   } catch (error) {
     return res.status(500).json({ message: error.message });
@@ -99,7 +97,15 @@ export const deleteProduct = async (req, res) => {
   }
 };
 
-
+export const getProducts = async (req, res) => {
+  try {
+    const products = await UserModel.getAllProducts();
+    return res.status(200).json(products);
+  } catch (error) {
+    console.error("Error al obtener productos:", error);
+    return res.status(500).json({ message: "Error al obtener productos" });
+  }
+};
 
 export const chat = async (req, res) => {
   const { text, sender, user_id } = req.body;
@@ -126,5 +132,29 @@ export const getProductsByCategory = async (req, res) => {
   } catch (error) {
     console.error("Error al buscar productos por categoria:", error);
     res.status(500).json({ message: "Error al buscar productos por categoria" });
+  }
+};
+
+const profile = async (req, res) => {
+  try {
+    const user = await UserModel.findOneByEmail(req.email);
+    return res.status(200).json({ ok: true, message: user });
+  } catch (err) {
+    console.log(err);
+    return res
+      .status(500)
+      .json({ ok: false, message: "Internal server error" });
+  }
+};
+
+const getProductos = async (req, res) => {
+  try {
+    const suites = await SuiteModel.getAllSuites();
+    return res.status(200).json({ ok: true, suites: suites });
+  } catch (err) {
+    console.log(err);
+    return res
+      .status(500)
+      .json({ ok: false, message: "Error interno del servidor" });
   }
 };
