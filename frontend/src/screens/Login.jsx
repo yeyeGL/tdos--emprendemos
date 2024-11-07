@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import { MdVisibility, MdVisibilityOff } from "react-icons/md";
 import { useState } from "react";
+import Swal from "sweetalert2";
 
 const Login = () => {
   const redirect = useNavigate();
@@ -22,7 +23,21 @@ const Login = () => {
       console.log(res.data);
       reset()
       redirect("/home");
+      Swal.fire({
+        title: 'Operación exitosa!',
+        text: 'Inicio de sesión exitoso',
+        icon: 'success',
+        confirmButtonText: 'OK',
+        confirmButtonColor: '#28a745'
+      })
     } catch (error) {
+      Swal.fire({
+        title: 'Error!',
+        text: 'Correo o contraseña incorrecta',
+        icon: 'error',
+        confirmButtonText: 'OK',
+        confirmButtonColor: 'red'
+      })
       console.log("Error", error.response.data);
     }
   });
