@@ -24,6 +24,17 @@ const getChats = async()=>{
     }
 }
 
+const getChatsBot = async()=>{
+    try {
+        const result = await pool.query("SELECT * FROM chatsBot")
+        console.table(result.rows)
+        console.log("Lista de chats bots")
+    } catch (error) {
+        console.log(error)
+        
+    }
+}
+
 const getProducts = async()=>{
     try {
         const result = await pool.query("SELECT * FROM products")
@@ -37,3 +48,4 @@ const getProducts = async()=>{
 getClient()
 getProducts()
 getChats()
+getChatsBot()

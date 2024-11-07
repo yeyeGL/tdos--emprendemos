@@ -105,6 +105,21 @@ const createChat = async (text, sender, user_id) => {
   }
 };
 
+const createChatBot = async (text, sender, user_id) => {
+  try {
+    const result = await pool.query(`
+      INSERT INTO chatsbot (text, sender, user_id)
+      VALUES ($1, $2, $3)
+      RETURNING *
+    `, [text, sender, user_id]);
+
+    return result.rows[0]; 
+  } catch (error) {
+    console.error("Error al crear el chat:", error);
+    throw new Error("Error al crear el chat");
+  }
+};
+
 const findByCategory = async (category) => {
   try {
     const result = await pool.query(`SELECT * FROM products WHERE category = $1`, [
@@ -142,5 +157,6 @@ export const UserModel = {
   createChat,
   findByCategory,
   getAllProducts,
-  findOneByEmail
+  findOneByEmail,
+  createChatBot
 };

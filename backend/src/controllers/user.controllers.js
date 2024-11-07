@@ -121,6 +121,20 @@ export const chat = async (req, res) => {
   }
 };
 
+export const chatBot = async (req, res) => {
+  const { text, sender, user_id } = req.body;
+
+  try {
+    // Crear un chatBot
+    const createdChat = await UserModel.createChatBot(text, sender, user_id);
+
+    return res.status(201).json({ message: "ChatBot creado con exito", chat: createdChat });
+  } catch (error) {
+    console.error("Error al crear el chat:", error);
+    return res.status(500).json({ message: "Error al crear el chat" });
+  }
+};
+
 export const getProductsByCategory = async (req, res) => {
   const { category } = req.params; 
   try {

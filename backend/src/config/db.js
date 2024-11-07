@@ -47,6 +47,17 @@ const createChatTable = `
   );
 `;
 
+//Tabla de chats del bot
+const createChatTableBot = `
+  CREATE TABLE IF NOT EXISTS chatsbot (
+    id SERIAL PRIMARY KEY,
+    text VARCHAR(255) NOT NULL,
+    sender VARCHAR(50) NOT NULL, 
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    user_id INTEGER REFERENCES users(id) ON DELETE CASCADE
+  );
+`;
+
 
 const createTables = async () => {
   try {
@@ -56,6 +67,8 @@ const createTables = async () => {
     console.log('Tabla "products" creada exitosamente');
     await pool.query(createChatTable);
     console.log('Tabla "chats" creada exitosamente');
+    await pool.query(createChatTableBot);
+    console.log('Tabla "chatsBot" creada exitosamente');
   } catch (error) {
     console.error('Error al crear las tablas:', error);
   }

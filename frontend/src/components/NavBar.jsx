@@ -1,3 +1,4 @@
+import { FaHeadset } from 'react-icons/fa'
 import {
   Navbar,
   NavbarBrand,
@@ -32,6 +33,7 @@ const NavBar = () => {
          <NavbarItem><Link className="font-semibold text-white cursor-pointer" onClick={() => handleNavigate('/profile')}>Perfil</Link></NavbarItem>
           <NavbarItem><Link className="font-semibold text-white cursor-pointer" onClick={() => handleNavigate('/notices')}>Noticias</Link></NavbarItem>
           <NavbarItem><Link className="font-semibold text-white cursor-pointer" onClick={() => handleNavigate('/opciones')}>Opciones</Link></NavbarItem>
+          <NavbarItem><Link className="font-semibold text-white cursor-pointer" onClick={() => handleNavigate('/chatbot')}>Ayuda   <FaHeadset className="text-white" /></Link></NavbarItem>
         </NavbarContent>
       </NavbarContent>
 
@@ -46,18 +48,18 @@ const NavBar = () => {
               color="primary"
               name="Profile"
               size="sm"
-              src=""
+              src="https://tse4.explicit.bing.net/th?id=OIP.awAiMS1BCAQ2xS2lcdXGlwHaHH&pid=Api&P=0&h=180"
             />
           </DropdownTrigger>
           <DropdownMenu aria-label="Profile Actions" variant="flat">
             <DropdownItem key="profile" className="h-14 gap-2">
-              <p className="font-semibold">Nombre de la cuenta</p>
-              <p className="font-semibold">Correo de la cuenta</p>
+              <p className="font-semibold">Faber</p>
+              <p className="font-semibold">Faber@correo.com</p>
             </DropdownItem>
             <DropdownItem onClick={() => handleNavigate('/profile')}>Mi perfil</DropdownItem>
             <DropdownItem onClick={() => handleNavigate('/notices')}>Noticias</DropdownItem>
             <DropdownItem onClick={() => handleNavigate('/opciones')}>Opciones</DropdownItem>
-            <DropdownItem onClick={() => handleNavigate('/')} color="danger">Log Out</DropdownItem>
+            <DropdownItem onClick={() => handleNavigate('/')} color="danger">Cerrar sesión</DropdownItem>
           </DropdownMenu>
         </Dropdown>
       </NavbarContent>

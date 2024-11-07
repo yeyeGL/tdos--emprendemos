@@ -6,7 +6,7 @@ import Profile from "../screens/Profile";
 import Chat from "../screens/Chat";
 import Notices from "../screens/Notices";
 import Opciones from "../screens/Opciones";
-
+import ChatBot from "../screens/ChatBot";
 
 const Rutas =()=>{
     return(
@@ -19,6 +19,7 @@ const Rutas =()=>{
                 <Route path="/chat" element={<Chat/>} />
                 <Route path="/notices" element={<Notices/>} />
                 <Route path="/opciones" element={<Opciones/>} />
+                <Route path="/ChatBot" element={<ChatBot/>} />
             </Routes>
         </BrowserRouter>
     )

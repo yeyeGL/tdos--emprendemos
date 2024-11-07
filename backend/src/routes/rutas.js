@@ -8,7 +8,8 @@ import {
   deleteProduct,
   chat,
   getProductsByCategory,
-  getProducts
+  getProducts,
+  chatBot,
 } from "../controllers/user.controllers.js";
 
 const storage = multer.diskStorage({
@@ -32,7 +33,7 @@ router.delete("/products/:id", deleteProduct);
 router.get("/products/category/:category", getProductsByCategory);
 router.post("/chat", chat);
 router.get("/allproducts",getProducts );
-
+router.post("/chatbot",chatBot );
 
 
 export default router;

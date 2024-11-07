@@ -17,8 +17,8 @@ const ProfileHeader = () => {
           <User className="w-12 h-12 text-green-600" />
         </div>
         <div>
-          <h2 className="text-3xl font-bold text-white leading-tight">nombre usuario</h2>
-          <p className="text-md text-green-500">nombbreusuario@gmail.com</p>
+          <h2 className="text-3xl font-bold text-white leading-tight">Faber</h2>
+          <p className="text-md text-green-500">Faber@correo.com</p>
         </div>
       </div>
 
